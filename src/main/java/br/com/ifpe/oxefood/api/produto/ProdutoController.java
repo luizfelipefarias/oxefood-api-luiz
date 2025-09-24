@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.ifpe.oxefood.modelo.produto.Produto;
 import br.com.ifpe.oxefood.modelo.produto.ProdutoService;
+
 @CrossOrigin
 @RestController
 @RequestMapping("api/produto")
@@ -23,19 +24,19 @@ public class ProdutoController {
     private ProdutoService produtoService;
 
     @PostMapping
-    public ResponseEntity<Produto> save(@RequestBody ProdutoRequest request){
-        Produto produto= produtoService.save(request.build());
+    public ResponseEntity<Produto> save(@RequestBody ProdutoRequest request) {
+        Produto produto = produtoService.save(request.build());
 
         return new ResponseEntity<Produto>(produto, HttpStatus.CREATED);
     }
 
     @GetMapping
-    public List<Produto> listarTodos(){
+    public List<Produto> listarTodos() {
         return produtoService.listarTodos();
     }
 
     @GetMapping("/{id}")
-    public Produto obterPorId(@PathVariable Long id){
+    public Produto obterPorId(@PathVariable Long id) {
         return produtoService.obterPorId(id);
     }
 }

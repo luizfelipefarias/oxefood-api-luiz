@@ -13,7 +13,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import org.hibernate.annotations.SQLRestriction;
 
-
 @Entity
 @Table(name = "Cliente")
 @SQLRestriction("habilitado = true")
@@ -22,9 +21,9 @@ import org.hibernate.annotations.SQLRestriction;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Cliente extends EntidadeAuditavel  {
-  
-   @Column 
+public class Cliente extends EntidadeAuditavel {
+
+   @Column
    private String nome;
 
    @Column

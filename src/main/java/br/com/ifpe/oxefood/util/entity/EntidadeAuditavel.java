@@ -15,30 +15,32 @@ import jakarta.persistence.Version;
 import lombok.Getter;
 import lombok.Setter;
 
+@SuppressWarnings("serial")
 @Getter
 @Setter
+
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
 public abstract class EntidadeAuditavel extends EntidadeNegocio {
 
-   @JsonIgnore
-   @Version
-   private Long versao;
+    @JsonIgnore
+    @Version
+    private Long versao;
 
-   @JsonIgnore
-   @CreatedDate
-   private LocalDate dataCriacao;
+    @JsonIgnore
+    @CreatedDate
+    private LocalDate dataCriacao;
 
-   @JsonIgnore
-   @LastModifiedDate
-   private LocalDate dataUltimaModificacao;
+    @JsonIgnore
+    @LastModifiedDate
+    private LocalDate dataUltimaModificacao;
 
-   @JsonIgnore
-   @Column
-   private Long criadoPor; // Id do usuário que o criou
+    @JsonIgnore
+    @Column
+    private Long criadoPor; // Id do usuário que o criou
 
-   @JsonIgnore
-   @Column
-   private Long ultimaModificacaoPor; // Id do usuário que fez a última alteração
+    @JsonIgnore
+    @Column
+    private Long ultimaModificacaoPor; // Id do usuário que fez a última alteração
 
 }

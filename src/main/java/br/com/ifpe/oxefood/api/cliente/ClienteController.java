@@ -19,26 +19,17 @@ import br.com.ifpe.oxefood.modelo.cliente.ClienteService;
 
 @RestController
 @RequestMapping("/api/cliente")
-@CrossOrigin
-
+@CrossOrigin(origins = "*")
 public class ClienteController {
 
     @Autowired
     private ClienteService clienteService;
-
-    @PutMapping("/{id}")
-    public ResponseEntity<Cliente> update(@PathVariable("id") Long id, @RequestBody ClienteRequest request) {
-
-        clienteService.update(id, request.build());
-        return ResponseEntity.ok().build();
-    }
 
     @PostMapping
     public ResponseEntity<Cliente> save(@RequestBody ClienteRequest request) {
 
         Cliente cliente = clienteService.save(request.build());
         return new ResponseEntity<Cliente>(cliente, HttpStatus.CREATED);
-
     }
 
     @GetMapping
@@ -49,6 +40,13 @@ public class ClienteController {
     @GetMapping("/{id}")
     public Cliente obterPorID(@PathVariable Long id) {
         return clienteService.obterPorID(id);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Cliente> update(@PathVariable("id") Long id, @RequestBody ClienteRequest request) {
+
+        clienteService.update(id, request.build());
+        return ResponseEntity.ok().build();
     }
 
 }

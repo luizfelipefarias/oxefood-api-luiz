@@ -14,29 +14,28 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-
 public class ClienteRequest {
 
-    private String nome;
+  private String nome;
 
-    @JsonFormat(pattern = "dd/MM/yyyy")
-    private LocalDate dataNascimento;
+  @JsonFormat(pattern = "dd/MM/yyyy")
+  private LocalDate dataNascimento;
 
-    private String cpf;
+  private String cpf;
 
-    private String foneCelular;
+  private String foneCelular;
 
-    private String foneFixo;
+  private String foneFixo;
 
-    public Cliente build() {
+  public Cliente build() {
 
-        return Cliente.builder()
-                .nome(nome)
-                .dataNascimento(dataNascimento)
-                .cpf(cpf)
-                .foneCelular(foneCelular)
-                .foneFixo(foneFixo)
-                .build();
-    }
+    return Cliente.builder()
+        .nome(nome)
+        .dataNascimento(dataNascimento)
+        .cpf(cpf)
+        .foneCelular(foneCelular)
+        .foneFixo(foneFixo)
+        .build();
+  }
 
 }

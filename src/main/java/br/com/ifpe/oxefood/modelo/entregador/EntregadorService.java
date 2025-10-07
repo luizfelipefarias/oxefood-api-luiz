@@ -52,4 +52,10 @@ public class EntregadorService {
         return repository.save(entregador);
     }
 
+    public Entregador delete(Long id){
+        Entregador entregador = repository.findById(id).get();
+        entregador.setHabilitado(Boolean.FALSE);
+
+        return repository.save(entregador);
+    }
 }

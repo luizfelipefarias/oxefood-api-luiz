@@ -2,6 +2,8 @@ package br.com.ifpe.oxefood.api.entregador;
 
 import java.time.LocalDate;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import br.com.ifpe.oxefood.modelo.entregador.Entregador;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -20,6 +22,7 @@ public class EntregadorRequest {
 
     private String rg;
     
+    @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate dataNascimento;
 
     private String foneCelular;

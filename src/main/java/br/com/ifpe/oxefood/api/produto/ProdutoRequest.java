@@ -28,6 +28,7 @@ public class ProdutoRequest {
     public Produto build() {
         return Produto.builder()
             
+            .codigo(codigo)
             .titulo(titulo)
             .descricao(descricao)
             .valorUnitario(valorUnitario)

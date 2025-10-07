@@ -42,4 +42,12 @@ public class ProdutoService {
 
         repository.save(produto);
     }
+
+    public Produto delete(Long id){
+
+        Produto produto = repository.findById(id).get();
+        produto.setHabilitado(Boolean.FALSE);
+
+        return repository.save(produto);
+    }
 }

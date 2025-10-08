@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 import org.hibernate.annotations.SQLRestriction;
 
+
 import br.com.ifpe.oxefood.util.entity.EntidadeAuditavel;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

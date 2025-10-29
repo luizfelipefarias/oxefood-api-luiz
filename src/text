@@ -1,0 +1,324 @@
+
+
+# 📝 Template coringa completo – Back-end + Front-end
+
+> **Instruções gerais:**
+> Sempre que você ver `TROQUE_AQUI_POR_...`, substitua pelo que o professor pedir.
+> Exemplo: se a prova pedir **Curso / Aluno**, substitua:
+>
+> * `TROQUE_AQUI_POR_ENTIDADE_PAI` → `Curso`
+> * `TROQUE_AQUI_POR_ENTIDADE_FILHA` → `Aluno`
+> * `TROQUE_AQUI_POR_ENTIDADE_PAI_MINUSCULO` → `curso`
+> * `TROQUE_AQUI_POR_ENTIDADE_FILHA_MINUSCULO` → `aluno`
+> * `TROQUE_AQUI_POR_ENTIDADE_PAI_PLURAL` → `Cursos`
+> * `TROQUE_AQUI_POR_ENTIDADE_FILHA_PLURAL` → `Alunos`
+
+---
+
+## BACK-END (Spring Boot)
+
+### 1. Entidade Pai
+
+```java
+package br.com.ifpe.oxefood.model;
+
+import jakarta.persistence.*;
+import lombok.*;
+
+/**
+ * TROQUE_AQUI_POR_ENTIDADE_PAI → nome que o professor pedir (ex: Curso, Categoria)
+ */
+@Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class TROQUE_AQUI_POR_ENTIDADE_PAI {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    // TROQUE_AQUI_POR_ATRIBUTOS → adicione os atributos do pai conforme a prova
+    private String nome;
+    private String descricao;
+}
+```
+
+### 2. Entidade Filha
+
+```java
+package br.com.ifpe.oxefood.model;
+
+import jakarta.persistence.*;
+import lombok.*;
+import java.time.LocalDate;
+
+/**
+ * TROQUE_AQUI_POR_ENTIDADE_FILHA → nome que o professor pedir (ex: Aluno, Produto)
+ */
+@Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class TROQUE_AQUI_POR_ENTIDADE_FILHA {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    // TROQUE_AQUI_POR_ATRIBUTOS → adicione os atributos da filha conforme a prova
+    private String nome;
+    private Integer quantidade;
+    private Double valor;
+    private LocalDate dataCadastro;
+
+    // Relacionamento com a entidade pai
+    @ManyToOne
+    private TROQUE_AQUI_POR_ENTIDADE_PAI TROQUE_AQUI_POR_ENTIDADE_PAI_MINUSCULO;
+}
+```
+
+### 3. Repositórios
+
+```java
+// TROQUE_AQUI_POR_ENTIDADE_PAI_Repository.java
+package br.com.ifpe.oxefood.repository;
+
+import br.com.ifpe.oxefood.model.TROQUE_AQUI_POR_ENTIDADE_PAI;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface TROQUE_AQUI_POR_ENTIDADE_PAI_Repository extends JpaRepository<TROQUE_AQUI_POR_ENTIDADE_PAI, Long> {}
+```
+
+```java
+// TROQUE_AQUI_POR_ENTIDADE_FILHA_Repository.java
+package br.com.ifpe.oxefood.repository;
+
+import br.com.ifpe.oxefood.model.TROQUE_AQUI_POR_ENTIDADE_FILHA;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface TROQUE_AQUI_POR_ENTIDADE_FILHA_Repository extends JpaRepository<TROQUE_AQUI_POR_ENTIDADE_FILHA, Long> {}
+```
+
+### 4. Services
+
+```java
+// TROQUE_AQUI_POR_ENTIDADE_PAI_Service.java
+package br.com.ifpe.oxefood.service;
+
+import br.com.ifpe.oxefood.model.TROQUE_AQUI_POR_ENTIDADE_PAI;
+import br.com.ifpe.oxefood.repository.TROQUE_AQUI_POR_ENTIDADE_PAI_Repository;
+import org.springframework.stereotype.Service;
+import java.util.List;
+
+@Service
+public class TROQUE_AQUI_POR_ENTIDADE_PAI_Service {
+
+    private final TROQUE_AQUI_POR_ENTIDADE_PAI_Repository repository;
+
+    public TROQUE_AQUI_POR_ENTIDADE_PAI_Service(TROQUE_AQUI_POR_ENTIDADE_PAI_Repository repository) {
+        this.repository = repository;
+    }
+
+    public TROQUE_AQUI_POR_ENTIDADE_PAI salvar(TROQUE_AQUI_POR_ENTIDADE_PAI e) { return repository.save(e); }
+    public TROQUE_AQUI_POR_ENTIDADE_PAI alterar(TROQUE_AQUI_POR_ENTIDADE_PAI e) { return repository.save(e); }
+    public void excluir(Long id) { repository.deleteById(id); }
+    public List<TROQUE_AQUI_POR_ENTIDADE_PAI> listarTodos() { return repository.findAll(); }
+    public TROQUE_AQUI_POR_ENTIDADE_PAI obterPorId(Long id) { return repository.findById(id).orElse(null); }
+}
+```
+
+```java
+// TROQUE_AQUI_POR_ENTIDADE_FILHA_Service.java
+package br.com.ifpe.oxefood.service;
+
+import br.com.ifpe.oxefood.model.TROQUE_AQUI_POR_ENTIDADE_FILHA;
+import br.com.ifpe.oxefood.repository.TROQUE_AQUI_POR_ENTIDADE_FILHA_Repository;
+import org.springframework.stereotype.Service;
+import java.util.List;
+
+@Service
+public class TROQUE_AQUI_POR_ENTIDADE_FILHA_Service {
+
+    private final TROQUE_AQUI_POR_ENTIDADE_FILHA_Repository repository;
+
+    public TROQUE_AQUI_POR_ENTIDADE_FILHA_Service(TROQUE_AQUI_POR_ENTIDADE_FILHA_Repository repository) {
+        this.repository = repository;
+    }
+
+    public TROQUE_AQUI_POR_ENTIDADE_FILHA salvar(TROQUE_AQUI_POR_ENTIDADE_FILHA c) { return repository.save(c); }
+    public TROQUE_AQUI_POR_ENTIDADE_FILHA alterar(TROQUE_AQUI_POR_ENTIDADE_FILHA c) { return repository.save(c); }
+    public void excluir(Long id) { repository.deleteById(id); }
+    public List<TROQUE_AQUI_POR_ENTIDADE_FILHA> listarTodos() { return repository.findAll(); }
+    public TROQUE_AQUI_POR_ENTIDADE_FILHA obterPorId(Long id) { return repository.findById(id).orElse(null); }
+}
+```
+
+### 5. Controllers
+
+```java
+// TROQUE_AQUI_POR_ENTIDADE_PAI_Controller.java
+package br.com.ifpe.oxefood.api;
+
+import br.com.ifpe.oxefood.model.TROQUE_AQUI_POR_ENTIDADE_PAI;
+import br.com.ifpe.oxefood.service.TROQUE_AQUI_POR_ENTIDADE_PAI_Service;
+import org.springframework.web.bind.annotation.*;
+import java.util.List;
+
+@RestController
+@RequestMapping("/api/TROQUE_AQUI_POR_ENTIDADE_PAI_MINUSCULO")
+@CrossOrigin("*")
+public class TROQUE_AQUI_POR_ENTIDADE_PAI_Controller {
+
+    private final TROQUE_AQUI_POR_ENTIDADE_PAI_Service service;
+
+    public TROQUE_AQUI_POR_ENTIDADE_PAI_Controller(TROQUE_AQUI_POR_ENTIDADE_PAI_Service service) { this.service = service; }
+
+    @PostMapping
+    public TROQUE_AQUI_POR_ENTIDADE_PAI criar(@RequestBody TROQUE_AQUI_POR_ENTIDADE_PAI e) { return service.salvar(e); }
+
+    @PutMapping("/{id}")
+    public TROQUE_AQUI_POR_ENTIDADE_PAI atualizar(@PathVariable Long id, @RequestBody TROQUE_AQUI_POR_ENTIDADE_PAI e) {
+        e.setId(id);
+        return service.alterar(e);
+    }
+
+    @DeleteMapping("/{id}")
+    public void excluir(@PathVariable Long id) { service.excluir(id); }
+
+    @GetMapping
+    public List<TROQUE_AQUI_POR_ENTIDADE_PAI> listar() { return service.listarTodos(); }
+
+    @GetMapping("/{id}")
+    public TROQUE_AQUI_POR_ENTIDADE_PAI obter(@PathVariable Long id) { return service.obterPorId(id); }
+}
+```
+
+```java
+// TROQUE_AQUI_POR_ENTIDADE_FILHA_Controller.java
+package br.com.ifpe.oxefood.api;
+
+import br.com.ifpe.oxefood.model.TROQUE_AQUI_POR_ENTIDADE_FILHA;
+import br.com.ifpe.oxefood.service.TROQUE_AQUI_POR_ENTIDADE_FILHA_Service;
+import org.springframework.web.bind.annotation.*;
+import java.util.List;
+
+@RestController
+@RequestMapping("/api/TROQUE_AQUI_POR_ENTIDADE_FILHA_MINUSCULO")
+@CrossOrigin("*")
+public class TROQUE_AQUI_POR_ENTIDADE_FILHA_Controller {
+
+    private final TROQUE_AQUI_POR_ENTIDADE_FILHA_Service service;
+
+    public TROQUE_AQUI_POR_ENTIDADE_FILHA_Controller(TROQUE_AQUI_POR_ENTIDADE_FILHA_Service service) { this.service = service; }
+
+    @PostMapping
+    public TROQUE_AQUI_POR_ENTIDADE_FILHA criar(@RequestBody TROQUE_AQUI_POR_ENTIDADE_FILHA c) { return service.salvar(c); }
+
+    @PutMapping("/{id}")
+    public TROQUE_AQUI_POR_ENTIDADE_FILHA atualizar(@PathVariable Long id, @RequestBody TROQUE_AQUI_POR_ENTIDADE_FILHA c) {
+        c.setId(id);
+        return service.alterar(c);
+    }
+
+    @DeleteMapping("/{id}")
+    public void excluir(@PathVariable Long id) { service.excluir(id); }
+
+    @GetMapping
+    public List<TROQUE_AQUI_POR_ENTIDADE_FILHA> listar() { return service.listarTodos(); }
+
+    @GetMapping("/{id}")
+    public TROQUE_AQUI_POR_ENTIDADE_FILHA obter(@PathVariable Long id) { return service.obterPorId(id); }
+}
+```
+
+---
+
+## FRONT-END (React)
+
+### 1. Serviço da entidade pai
+
+```javascript
+// src/services/TROQUE_AQUI_POR_ENTIDADE_PAI_MINUSCULO_Service.js
+import axios from "axios";
+
+const API_URL = "http://localhost:8080/api/TROQUE_AQUI_POR_ENTIDADE_PAI_MINUSCULO";
+
+export const listarTROQUE_AQUI_POR_ENTIDADE_PAI_PLURAL = () => axios.get(API_URL);
+```
+
+### 2. Serviço da entidade filha
+
+```javascript
+// src/services/TROQUE_AQUI_POR_ENTIDADE_FILHA_MINUSCULO_Service.js
+import axios from "axios";
+
+const API_URL = "http://localhost:8080/api/TROQUE_AQUI_POR_ENTIDADE_FILHA_MINUSCULO";
+
+export const listarTROQUE_AQUI_POR_ENTIDADE_FILHA_PLURAL = () => axios.get(API_URL);
+export const obterTROQUE_AQUI_POR_ENTIDADE_FILHA = (id) => axios.get(`${API_URL}/${id}`);
+export const salvarTROQUE_AQUI_POR_ENTIDADE_FILHA = (data) => axios.post(API_URL, data);
+export const atualizarTROQUE_AQUI_POR_ENTIDADE_FILHA = (id, data) => axios.put(`${API_URL}/${id}`, data);
+export const excluirTROQUE_AQUI_POR_ENTIDADE_FILHA = (id) => axios.delete(`${API_URL}/${id}`);
+```
+
+
+### 3. Página React da entidade filha
+
+```javascript
+import React, { useEffect, useState } from "react";
+import {
+  listarTROQUE_AQUI_POR_ENTIDADE_FILHA_PLURAL,
+  salvarTROQUE_AQUI_POR_ENTIDADE_FILHA,
+  atualizarTROQUE_AQUI_POR_ENTIDADE_FILHA,
+  excluirTROQUE_AQUI_POR_ENTIDADE_FILHA
+} from "../services/TROQUE_AQUI_POR_ENTIDADE_FILHA_MINUSCULO_Service";
+
+import { listarTROQUE_AQUI_POR_ENTIDADE_PAI_PLURAL } from "../services/TROQUE_AQUI_POR_ENTIDADE_PAI_MINUSCULO_Service";
+
+function TROQUE_AQUI_POR_ENTIDADE_FILHA_Page() {
+  const [itens, setItens] = useState([]);
+  const [pais, setPais] = useState([]);
+  const [form, setForm] = useState({
+    id: null,
+    nome: "",
+    quantidade: "",
+    valor: "",
+    dataCadastro: "",
+    TROQUE_AQUI_POR_ENTIDADE_PAI_MINUSCULO: ""
+  });
+
+  useEffect(() => { carregar(); }, []);
+
+  const carregar = async () => {
+    const [resFilho, resPai] = await Promise.all([
+      listarTROQUE_AQUI_POR_ENTIDADE_FILHA_PLURAL(),
+      listarTROQUE_AQUI_POR_ENTIDADE_PAI_PLURAL()
+    ]);
+    setItens(resFilho.data);
+    setPais(resPai.data);
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setForm({ ...form, [name]: value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const dados = { ...form, TROQUE_AQUI_POR_ENTIDADE_PAI_MINUSCULO: { id: Number(form.TROQUE_AQUI_POR_ENTIDADE_PAI_MINUSCULO) } };
+    if (form.id) await atualizarTROQUE_AQUI_POR_ENTIDADE_FILHA(form.id, dados);
+    else await salvarTROQUE_AQUI_POR_ENTIDADE_FILHA(dados);
+
+    setForm({ id: null, nome: "", quantidade: "", valor: "", dataCadastro: "", TROQUE_AQUI_POR_ENTIDADE_PAI_MINUSCULO: "" });
+    carregar();
+  };
+
+  return (
+    <div>
+      <h1>Gerenciar TROQUE_AQUI_POR_ENTIDADE_FILHA_PLURAL</h1>
+      {/* Form e tabela genéricos */}
+    </div>
+  );
+}
+
+export default TROQUE_AQUI_POR_ENTIDADE_FILHA_Page;
+

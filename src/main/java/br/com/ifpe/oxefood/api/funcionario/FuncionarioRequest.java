@@ -1,14 +1,16 @@
-package br.com.ifpe.oxefood.api.entregador;
+package br.com.ifpe.oxefood.api.funcionario;
 
 import java.time.LocalDate;
 
-import org.hibernate.validator.constraints.Length;
-import org.hibernate.validator.constraints.br.CPF;
-
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-import br.com.ifpe.oxefood.modelo.entregador.Entregador;
+import br.com.ifpe.oxefood.modelo.acesso.Usuario;
+import br.com.ifpe.oxefood.modelo.funcionario.Funcionario;
+import br.com.ifpe.oxefood.modelo.funcionario.TipoFuncionario;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -18,13 +20,15 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class EntregadorRequest {
+public class FuncionarioRequest {
 
-    @NotBlank(message = "O Nome é de preenchimento obrigatório")
-    @Length(max = 100, message = "O Nome deverá ter no máximo {max} caracteres")
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    private TipoFuncionario tipo;
+
+    @NotBlank
     private String nome;
 
- 
     private String cpf;
 
     private String rg;
@@ -36,14 +40,9 @@ public class EntregadorRequest {
 
     private String foneFixo;
 
-    private Integer qtdEntregasRealizadas;
-
-
-    private Double valorFrete;
+    private Double salario;
 
     private String enderecoRua;
-
-    private String enderecoComplemento;
 
     private String enderecoNumero;
 
@@ -51,32 +50,31 @@ public class EntregadorRequest {
 
     private String enderecoCidade;
 
-    @NotBlank(message = "O campo 'CEP' é de preenchimento obrigatório")
-    
     private String enderecoCep;
 
     private String enderecoUf;
 
-    private Boolean ativo;
+    private String enderecoComplemento;
 
-    public Entregador build() {
-        return Entregador.builder()
+    public Funcionario build() {
+
+        return Funcionario.builder()
+                .tipo(tipo)
                 .nome(nome)
                 .cpf(cpf)
                 .rg(rg)
                 .dataNascimento(dataNascimento)
                 .foneCelular(foneCelular)
                 .foneFixo(foneFixo)
-                .qtdEntregasRealizadas(qtdEntregasRealizadas)
-                .valorFrete(valorFrete)
+                .salario(salario)
                 .enderecoRua(enderecoRua)
-                .enderecoComplemento(enderecoComplemento)
                 .enderecoNumero(enderecoNumero)
                 .enderecoBairro(enderecoBairro)
                 .enderecoCidade(enderecoCidade)
                 .enderecoCep(enderecoCep)
                 .enderecoUf(enderecoUf)
-                .ativo(ativo)
+                .enderecoComplemento(enderecoComplemento)
                 .build();
     }
+
 }

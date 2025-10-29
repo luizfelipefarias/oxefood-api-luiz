@@ -1,5 +1,7 @@
 package br.com.ifpe.oxefood.api.cliente;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
+
 import br.com.ifpe.oxefood.modelo.cliente.EnderecoCliente;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -10,6 +12,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@CrossOrigin
 public class EnderecoClienteRequest {
     
    private String rua;
